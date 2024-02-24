@@ -1,12 +1,14 @@
 from django.db import models
 
 from products.models import Product
+from trader_types.models import TraderTypes
 
 NULLABLE = {'null': True, 'blank': True}
 
 
 class Trader(models.Model):
     title = models.CharField(max_length=100, unique=True, verbose_name='название')
+    type = models.ForeignKey(TraderTypes, on_delete=models.CASCADE, **NULLABLE, verbose_name='тип звена')
     level = models.PositiveIntegerField(verbose_name='уровень звена')
     email = models.EmailField(**NULLABLE, verbose_name='почта')
     country = models.CharField(max_length=100, **NULLABLE, verbose_name='страна')
