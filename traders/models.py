@@ -35,9 +35,11 @@ class Trader(models.Model):
     ):
         check_vendor_eq_trader(self)
         self.level = get_trader_level(self.vendor)
-        check_level_for_children(self, self.level)
+        if not self._state.adding:
+            check_level_for_children(self, self.level)
         super().save(force_insert, force_update, using, update_fields)
-        set_level_for_children(self, self.level)
+        if not self._state.adding:
+            set_level_for_children(self, self.level)
 
 
 def check_vendor_eq_trader(trader):
