@@ -12,5 +12,6 @@ class Product(models.Model):
         return f'{self.title} ({self.model})'
 
     class Meta:
+        ordering = ['pk']
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'

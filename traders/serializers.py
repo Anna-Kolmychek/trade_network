@@ -8,6 +8,6 @@ class TraderSerializer(serializers.ModelSerializer):
         model = Trader
         fields = '__all__'
         extra_kwargs = {
-            'debt': {'read_only': True}
+            'debt': {'read_only': True},
+            'level': {'read_only': True},
         }
-
