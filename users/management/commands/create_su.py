@@ -7,8 +7,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         superuser = User.objects.create(
             email='admin@email.com',
+            password='123',
             is_superuser=True,
             is_staff=True,
         )
-        superuser.set_password('123')
         superuser.save()
